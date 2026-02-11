@@ -26,7 +26,7 @@ import { IconArrowLeft, IconCheck, IconX } from '@tabler/icons-react';
 import { Header } from '../../components/Header';
 import { apiRoutes } from '../../apiRoutes';
 import axios from '../../axios_config';
-import Logo from '../../images/davaa.jpeg';
+import Logo from '../../images/davaa.png';
 
 export default function Login(props: PaperProps) {
     const navigate = useNavigate();
