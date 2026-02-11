@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { renderToString } from 'react-dom/server';
-import { LayersControl, MapContainer, ScaleControl, TileLayer, useMap, WMSTileLayer } from 'react-leaflet';
+import { LayersControl, MapContainer, ScaleControl, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'react-leaflet-fullscreen/styles.css';
@@ -37,6 +37,7 @@ export default function Map() {
     const rbLinesLayer = new L.LayerGroup();
     const markersLayer = new L.LayerGroup();
     const fovsLayer = new L.LayerGroup();
+    const openWeatherApiKey = import.meta.env.VITE_OPENWEATHERMAP_API_KEY || localStorage.getItem('owm_api_key') || '';
 
     function formatDrawer(eud:any, point:any) {
         const detail_rows:ReactElement[] = [];
@@ -516,17 +517,24 @@ export default function Map() {
                               pane="overlayPane"
                             />
                         </LayersControl.Overlay>
-                        <LayersControl.Overlay name="Weather">
-                            <WMSTileLayer
-                              url="http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"
-                              params={{
-                                layers: 'nexrad-n0r-900913',
-                                format: 'image/png',
-                                transparent: true }}
-                              attribution="Weather data © 2012 IEM Nexrad"
-                              pane="overlayPane"
-                            />
-                        </LayersControl.Overlay>
+                        {openWeatherApiKey && (
+                            <LayersControl.Overlay name="OpenWeatherMap Clouds">
+                                <TileLayer
+                                  url={`https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${openWeatherApiKey}`}
+                                  attribution='&copy; <a href="https://openweathermap.org/">OpenWeatherMap</a>'
+                                  pane="overlayPane"
+                                />
+                            </LayersControl.Overlay>
+                        )}
+                        {openWeatherApiKey && (
+                            <LayersControl.Overlay name="OpenWeatherMap Precipitation">
+                                <TileLayer
+                                  url={`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${openWeatherApiKey}`}
+                                  attribution='&copy; <a href="https://openweathermap.org/">OpenWeatherMap</a>'
+                                  pane="overlayPane"
+                                />
+                            </LayersControl.Overlay>
+                        )}
                         <LayersControl.Overlay name="Google Roads Overlay">
                             <TileLayer url="http://mt1.google.com/vt/lyrs=h&amp;x={x}&amp;y={y}&amp;z={z}" pane="overlayPane" />
                         </LayersControl.Overlay>
@@ -539,3 +547,4 @@ export default function Map() {
         </>
     );
 }
+

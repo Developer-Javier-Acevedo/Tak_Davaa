@@ -26,7 +26,7 @@ import { IconArrowLeft, IconCheck, IconX } from '@tabler/icons-react';
 import { Header } from '../../components/Header';
 import { apiRoutes } from '../../apiRoutes';
 import axios from '../../axios_config';
-import Logo from '../../images/ots-logo.png';
+import Logo from '../../images/davaa.jpeg';
 
 export default function Login(props: PaperProps) {
     const navigate = useNavigate();
@@ -193,7 +193,15 @@ export default function Login(props: PaperProps) {
     }
 
     return (
-        <Box bg={computedColorScheme === 'light' ? 'gray.1' : 'dark.9'} h="100vh">
+        <Box
+        mih="100vh"
+        style={{
+            background:
+            computedColorScheme === 'light'
+                ? 'radial-gradient(1200px 600px at 20% 10%, rgba(34,139,230,0.18), transparent 60%), radial-gradient(900px 500px at 90% 30%, rgba(132,94,247,0.14), transparent 55%), #f8fafc'
+                : 'radial-gradient(1200px 600px at 20% 10%, rgba(34,139,230,0.22), transparent 60%), radial-gradient(900px 500px at 90% 30%, rgba(132,94,247,0.18), transparent 55%), #0b1220',
+        }}
+        >
             <Header />
             <Container size={420} my={40}>
                 <Center>

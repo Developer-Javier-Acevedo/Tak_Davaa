@@ -40,7 +40,7 @@ import {
     Text,
     Tooltip
 } from '@mantine/core';
-import Logo from '../../images/ots-logo.png';
+import Logo from '../../images/davaa.png';
 import { formatISO, parseISO } from 'date-fns';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { notifications } from '@mantine/notifications';

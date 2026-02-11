@@ -19,6 +19,7 @@ import {
 import { useNavigate } from 'react-router';
 import { notifications } from '@mantine/notifications';
 import Logo from './images/ots-logo.png';
+import Logo2 from './images/davaa.png';
 import { AppContent } from './components/AppContent';
 import axios from './axios_config';
 import { apiRoutes } from './apiRoutes';
@@ -107,6 +108,7 @@ export function DefaultLayout() {
                         <Burger opened={mobileOpened} onClick={toggleMobile} hiddenFrom="sm" size="sm" pl={5} color="white" />
                         <Burger opened={desktopOpened} onClick={toggleDesktop} visibleFrom="sm" size="sm" color="white" />
                         <Image src={Logo} h={50} w="auto" />
+                        <Image src={Logo2} h={50} w="auto" />
                     </Group>
                     <Group>
                         <Menu shadow="md" width={200} trigger="click-hover">
